@@ -2,11 +2,16 @@
 Инструкция:
 
 1. Токен
-   Personal Access Token от GitHub с правом `delete_repo`.
+   Personal Access Token от GitHub с правом `delete_repo`
+   
    GitHub
+   
    Settings
+   
    Developer settings
-   Personal access tokens (classic).
+   
+   Personal access tokens (classic)
+   
    Create token (delete_repo и repo)
    
    Вставить токен в файл `src/main/resources/config.properties` в переменную `github.token`.
