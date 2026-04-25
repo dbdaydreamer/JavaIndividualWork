@@ -21,10 +21,20 @@ public class GitHubRestMethods {
 
     protected int lastStatusCode;
     protected String lastRateLimitHeader;
+    protected java.util.Map<String, String> lastResponseHeaders = new java.util.HashMap<>();
+    protected java.util.Map<String, String> lastRequestHeaders = new java.util.HashMap<>();
 
     @BeforeTest
     public void setup() {
         httpClient = HttpClients.createDefault();
+    }
+
+    public String getResponseHeader(String name) {
+        return lastResponseHeaders.get(name.toLowerCase());
+    }
+
+    public String getRequestHeader(String name) {
+        return lastRequestHeaders.get(name.toLowerCase());
     }
 
     // единый метод выполнения запросов
@@ -32,8 +42,19 @@ public class GitHubRestMethods {
         request.setHeader("Authorization", "Bearer " + token);
         request.setHeader("Accept", "application/vnd.github+json");
 
+        lastRequestHeaders.clear();
+        for (var h : request.getHeaders()) {
+            lastRequestHeaders.put(h.getName().toLowerCase(), h.getValue());
+        }
+
         try (CloseableHttpResponse response = httpClient.execute(request)) {
             lastStatusCode = response.getCode();
+
+            lastResponseHeaders.clear();
+            for (var h : response.getHeaders()) {
+                lastResponseHeaders.put(h.getName().toLowerCase(), h.getValue());
+            }
+
             // проверка лимитов
             var rateLimit = response.getFirstHeader("X-RateLimit-Limit");
             lastRateLimitHeader = rateLimit != null ? rateLimit.getValue() : null;
