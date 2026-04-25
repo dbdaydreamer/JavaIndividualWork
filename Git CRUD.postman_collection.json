@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "daf66a9d-857a-498a-b31a-3876620c6606",
+    "name": "Git CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53303275",
+    "_collection_link": "https://go.postman.co/collection/53303275-daf66a9d-857a-498a-b31a-3876620c6606?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/user",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "user"
+          ]
+        },
+        "description": "Запрос для получения данных авторизованного пользователя GitHub."
+      },
+      "response": []
+    },
+    {
+      "name": "Post data",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"post test\",\r\n  \"description\": \"postman post test\",\r\n  \"private\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/user/repos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "user",
+            "repos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Put data",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"names\": [\"testing\", \"api\", \"java\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/repos/dbdaydreamer/post-test/topics",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "repos",
+            "dbdaydreamer",
+            "post-test",
+            "topics"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete data",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/repos/dbdaydreamer/post-test",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "repos",
+            "dbdaydreamer",
+            "post-test"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

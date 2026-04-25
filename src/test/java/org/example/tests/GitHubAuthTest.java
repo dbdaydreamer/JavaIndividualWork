@@ -46,9 +46,9 @@ public class GitHubAuthTest extends GitHubRestMethods {
     // проверка обновления созданного репозитория
     @Test(dependsOnMethods = "testCreateRepository")
     public void testUpdateRepository() throws Exception {
-        var repo = executePatch("/repos/" + repoOwner + "/" + repoName, new Repository(repoName, "new desc", false), Repository.class);
+        var repo = executePut("/repos/" + repoOwner + "/" + repoName, new Repository(repoName, "new desc", false), Repository.class);
 
-        Assert.assertEquals(lastStatusCode, 200, "ошибка при патче");
+        Assert.assertEquals(lastStatusCode, 200, "ошибка при put");
         Assert.assertEquals(repo.description, "new desc", "описание старое");
     }
 

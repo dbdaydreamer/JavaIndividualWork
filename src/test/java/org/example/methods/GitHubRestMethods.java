@@ -76,6 +76,12 @@ public class GitHubRestMethods {
         return executeRequest(request, clazz);
     }
 
+    protected <T> T executePut(String endpoint, Object body, Class<T> clazz) throws IOException {
+        var request = new HttpPut(baseUrl + endpoint);
+        setBody(request, body);
+        return executeRequest(request, clazz);
+    }
+
     protected void executeDelete(String endpoint) throws IOException {
         executeRequest(new HttpDelete(baseUrl + endpoint), null);
     }
