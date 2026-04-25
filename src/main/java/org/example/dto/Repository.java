@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Repository {
-    public int id;
+    public long id;
     public String name;
     public String description;
 

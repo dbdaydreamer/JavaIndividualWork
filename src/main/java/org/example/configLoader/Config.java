@@ -1,14 +1,14 @@
-package org.example.utils;
+package org.example.configLoader;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Utils {
+public class Config {
     private static final Properties props = new Properties();
 
     static {
         // грузим конфиг
-        try (InputStream is = Utils.class.getResourceAsStream("/config.properties")) {
+        try (InputStream is = Config.class.getResourceAsStream("/config.properties")) {
             props.load(is);
         } catch (Exception e) {
             throw new RuntimeException("ошибка загрузки конфига", e);

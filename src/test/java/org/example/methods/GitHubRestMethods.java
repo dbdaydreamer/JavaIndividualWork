@@ -1,4 +1,4 @@
-package org.example.base;
+package org.example.methods;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.*;
@@ -8,7 +8,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.io.entity.StringEntity;
-import org.example.utils.Utils;
+import org.example.configLoader.Config;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import java.io.IOException;
@@ -16,8 +16,8 @@ import java.io.IOException;
 public class GitHubRestMethods {
     protected CloseableHttpClient httpClient;
     protected ObjectMapper mapper = new ObjectMapper();
-    protected String token = Utils.getProp("github.token");
-    protected String baseUrl = Utils.getProp("base.url");
+    protected String token = Config.getProp("github.token");
+    protected String baseUrl = Config.getProp("base.url");
 
     protected int lastStatusCode;
     protected String lastRateLimitHeader;

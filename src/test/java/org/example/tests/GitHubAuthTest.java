@@ -1,6 +1,6 @@
 package org.example.tests;
 
-import org.example.base.GitHubRestMethods;
+import org.example.methods.GitHubRestMethods;
 import org.example.dto.Repository;
 import org.example.dto.User;
 import org.testng.Assert;
